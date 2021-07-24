@@ -37,7 +37,7 @@
                               {{-- Process attributes --}}
                               @if ($item->options->count())
                               @foreach ($item->options as $groupAtt => $att)
-                              <b>{{ $attributesGroup[$groupAtt] }}</b>: {!! sc_render_option_price($att) !!}
+                              <b>{{ $attributesGroup[$groupAtt] ?? '' }}</b>: {!! sc_render_option_price($att) !!}
                               @endforeach
                               @endif
                               {{-- //end Process attributes --}}

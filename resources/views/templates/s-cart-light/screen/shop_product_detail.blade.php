@@ -78,16 +78,32 @@ $layout_page = shop_product_detail
                 </div>
                 {{--// Show price --}}
 
+                {{-- Show description --}}
+                @php
+                    $shortDescription = $product->getCustomField('short_description');
+                @endphp
+                @if($shortDescription)
+                <div class="group-md">
+                    <div class="single-product-description" id="product-detail-description">
+                        {!! nl2br(e($shortDescription['text'])) !!}
+                    </div>
+                </div>
+                @endif
+                {{--// Show description --}}
                 <hr class="hr-gray-100">
 
                 {{-- Button add to cart --}}
                 @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale())
                 <div class="group-xs group-middle">
-                    <div class="product-stepper">
-                      <input class="form-input" name="qty" type="number" data-zeros="true" value="1" min="1" max="100">
-                    </div>
                     <div>
-                        <button class="button button-lg button-secondary button-zakaria" type="submit">{{ sc_language_render('action.add_to_cart') }}</button>
+                        @php
+                            $checkoutLanding = $product->getCustomField('checkout_landing');
+                        @endphp
+                        @if($checkoutLanding)
+                        <a href="{{ $checkoutLanding['text'] }}" class="button button-lg button-secondary button-zakaria">
+                            {{ sc_language_render('action.add_to_cart') }}
+                        </a>
+                        @endif
                     </div>
                 </div>
                 @endif
@@ -245,6 +261,31 @@ $layout_page = shop_product_detail
         </div>
       </section>
       @endif
+    <section class="shoptimizer-sticky-add-to-cart visible">
+        <div class="col-full">
+            <div class="shoptimizer-sticky-add-to-cart__content">
+                <img width="300" height="300" src="{{ sc_file($product->getImage()) }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">						<div class="shoptimizer-sticky-add-to-cart__content-product-info">
+                    <span class="shoptimizer-sticky-add-to-cart__content-title">
+                        {{ $product->name }}
+                    </span>
+                </div>
+
+                <div class="shoptimizer-sticky-add-to-cart__content-button">
+                    <span class="shoptimizer-sticky-add-to-cart__content-price">
+                        @php
+                        $promotion = $product->promotionPrice;
+                        @endphp
+                        @if ($promotion)
+                        <del><span class="woocommerce-Price-amount amount">{{sc_currency_render($product->price)}}<span class="woocommerce-Price-currencySymbol">₫</span></span></del>
+                        <ins><span class="woocommerce-Price-amount amount">{{sc_currency_render($promotion['price_promotion'])}}<span class="woocommerce-Price-currencySymbol">₫</span></span></ins></span>
+                        @endif
+                    <a href="https://www.favimart.store/checkout-tigi" class="ajax_add_to_cart add_to_cart_button single_add_to_cart_button button">
+                        Đặt Hàng
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
    {{-- Render include view --}}
    @include($sc_templatePath.'.common.include_view')

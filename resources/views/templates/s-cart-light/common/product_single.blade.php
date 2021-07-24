@@ -6,7 +6,7 @@
           </a>
       </div>
       <h5 class="product-title"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h5>
-      
+
       @if (empty($hiddenStore))
       {!! $product->displayVendor() !!}
       @endif
@@ -18,7 +18,7 @@
 
       {!! $product->showPrice() !!}
     </div>
-    
+
     @if ($product->price != $product->getFinalPrice() && $product->kind !=SC_PRODUCT_GROUP)
     <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" /></span>
     @elseif($product->kind == SC_PRODUCT_BUILD)
