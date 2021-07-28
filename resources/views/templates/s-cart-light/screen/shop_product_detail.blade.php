@@ -264,7 +264,8 @@ $layout_page = shop_product_detail
     <section class="shoptimizer-sticky-add-to-cart visible">
         <div class="col-full">
             <div class="shoptimizer-sticky-add-to-cart__content">
-                <img width="300" height="300" src="{{ sc_file($product->getImage()) }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">						<div class="shoptimizer-sticky-add-to-cart__content-product-info">
+                <img width="300" height="300" src="{{ sc_file($product->getImage()) }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">
+                <div class="shoptimizer-sticky-add-to-cart__content-product-info">
                     <span class="shoptimizer-sticky-add-to-cart__content-title">
                         {{ $product->name }}
                     </span>
@@ -276,10 +277,10 @@ $layout_page = shop_product_detail
                         $promotion = $product->promotionPrice;
                         @endphp
                         @if ($promotion)
-                        <del><span class="woocommerce-Price-amount amount">{{sc_currency_render($product->price)}}<span class="woocommerce-Price-currencySymbol">₫</span></span></del>
-                        <ins><span class="woocommerce-Price-amount amount">{{sc_currency_render($promotion['price_promotion'])}}<span class="woocommerce-Price-currencySymbol">₫</span></span></ins></span>
+                        <del><span class="woocommerce-Price-amount amount">{{sc_currency_render($product->price)}}</span></del>
+                        <ins><span class="woocommerce-Price-amount amount">{{sc_currency_render($promotion['price_promotion'])}}</span></ins></span>
                         @endif
-                    <a href="https://www.favimart.store/checkout-tigi" class="ajax_add_to_cart add_to_cart_button single_add_to_cart_button button">
+                    <a href="https://www.favimart.store/checkout-tigi" class="ajax_add_to_cart add_to_cart_button single_add_to_cart_button">
                         Đặt Hàng
                     </a>
                 </div>
