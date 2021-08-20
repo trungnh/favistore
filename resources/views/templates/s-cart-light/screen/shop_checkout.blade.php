@@ -25,12 +25,9 @@ $layout_page = shop_checkout
                 {!! sc_language_render('cart.cart_empty') !!}!
             </div>
             @else
-            <div class="col-12">
-                <h5><i class="fa fa-shopping-bag" aria-hidden="true"></i>  {{ sc_store('title', $storeCheckout) }}</h5>
-            </div>
 
             {{-- Item cart detail --}}
-            @include($sc_templatePath.'.common.cart_list', ['cartItem' => $cartItem])
+            @include($sc_templatePath.'.common.checkout_cart_list', ['cartItem' => $cartItem])
             {{-- //Item cart detail --}}
 
 

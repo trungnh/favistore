@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <aside class="col-lg-9">
+        <aside class="col-lg-12">
             <div class="card">
                 <div class="table-responsive">
                     <table class="table table-borderless table-shopping-cart">
@@ -9,7 +9,6 @@
                             <th scope="col">Sản phẩm</th>
                             <th scope="col" width="120">Số lượng</th>
                             <th scope="col" width="120">Giá</th>
-                            <th scope="col" class="text-right d-none d-md-block" width="200"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -51,14 +50,14 @@
                                     </figure>
                                 </td>
                                 <td>
-                                    <input style="width: 70px; margin: 0 auto" type="number" data-id="{{ $item->id }}"
+                                    <input style="width: 150px; margin: 0 auto" type="number" data-id="{{ $item->id }}"
                                            data-rowid="{{$item->rowId}}" data-store_id="{{$product->store_id}}" onChange="updateCart($(this));"
                                            class="item-qty form-control" name="qty-{{$item->id}}" value="{{$item->qty}}">
                                     <span class="text-danger item-qty-{{$item->id}}" style="display: none;"></span>
                                     @if (session('arrErrorQty')[$product->id] ?? 0)
                                         <span class="help-block">
                                           <br>{{ sc_language_render('cart.minimum_value', ['value' => session('arrErrorQty')[$product->id]]) }}
-                                        </span>
+                                      </span>
                                     @endif
                                 </td>
                                 <td>
@@ -66,31 +65,10 @@
                                         <var class="price">{{sc_currency_render($item->subtotal)}}</var>
                                     </div>
                                 </td>
-                                <td class="text-right d-none d-md-block">
-                                    <a href="{{ sc_route("cart.remove", ['id'=>$item->rowId, 'instance' => 'cart']) }}"
-                                       onClick="return confirm('Confirm?')"
-                                       class="btn btn-light"
-                                       data-abc="true"
-                                    >
-                                        Xóa
-                                    </a>
-                                </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </aside>
-        <aside class="col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <dl class="dlist-align">
-                        <dt>Tổng tiền:</dt>
-                        <dd class="text-right text-dark b ml-3"><strong>{{sc_currency_render($cartSubTotal)}}</strong></dd>
-                    </dl>
-                    <hr>
-                    <button class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true" type="submit">Thanh toán</button>
                 </div>
             </div>
         </aside>
@@ -112,6 +90,10 @@
             padding: 1.40rem
         }
 
+        .img-sm {
+            width: 80px;
+            height: 80px
+        }
 
         .itemside .info {
             padding-left: 15px;
@@ -209,8 +191,6 @@
             font-size: 11px
         }
         .table-shopping-cart tr th {color: #000000;}
-        @media screen and (max-width: 484px) {
-        }
     </style>
 @endpush
 @push('scripts')
